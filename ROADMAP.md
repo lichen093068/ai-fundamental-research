@@ -12,7 +12,7 @@
 | Phase | 名稱 | 狀態 |
 |---|---|---|
 | 0 | Research Specification | ✅ Done |
-| 1 | Data Engineering | 🟡 In Progress（M1 Done，M2 進行中） |
+| 1 | Data Engineering | 🟡 In Progress（M1、M2 Done，M3 進行中） |
 | 2 | Fundamental Signal Research | ⬜ Not Started |
 | 3 | Statistical Validation | ⬜ Not Started |
 | 4 | Market Validation | ⬜ Not Started（對應 RESEARCH_SPEC 所稱的「Phase 2」） |
@@ -73,15 +73,15 @@
 - 主要風險：**範圍缺口** — 本文件只涵蓋 TWSE 上市，未涵蓋 `RESEARCH_SPEC.md` 母體定義中的「上櫃」公司資料來源（見 CURRENT_TASK 的 Review 項目）。若不補齊，Universe 定義與可用資料會長期不一致。
 
 **M2 — 建立標準財報資料 Schema**
-狀態：🟡 進行中（目前 milestone，詳見 `CURRENT_TASK.md`）
+狀態：✅ Done（`data/schema/fundamentals_schema.md`）
 
-- Tasks: 見 `CURRENT_TASK.md`（不在此重複，避免兩份文件內容漂移）
-- DoD：產出一份資料字典（data dictionary，純文件，非程式碼、非資料庫），欄位涵蓋 `RESEARCH_SPEC.md` §3.1 與 §4.2 的最低集合，且已用 S1–S5 公式與 §7.2 目標字典逐一核對「算得出來」。
+- Tasks: 見 `CURRENT_TASK.md` 歷史版本（已完成，不重複列出）
+- DoD：產出一份資料字典（data dictionary，純文件，非程式碼、非資料庫），欄位涵蓋 `RESEARCH_SPEC.md` §3.1 與 §4.2 的最低集合，且已用 S1–S5 公式與 §7.2 目標字典逐一核對「算得出來」。✅ 全部符合。
 - Dependencies：M1 完成。
-- 主要風險：欄位定義若照抄 `data_sources.md` §3.1 的精簡清單（只有 revenue/COGS/gross_profit/operating_income/net_income/OCF/capex），會漏掉 `RESEARCH_SPEC.md` §4.2 要求的 operating_expenses、EPS、income_tax、non_operating_items、資產負債表欄位等，導致之後訊號或目標算不出來才發現漏欄位。
+- 主要風險（已驗證發生）：`data_sources.md` §3.1 的精簡清單確實漏掉了 `operating_expenses`、`EPS`、`income_tax`、`non_operating_items`、全部資產負債表欄位；已依 `RESEARCH_SPEC.md` §4.2 補齊，記錄於 schema 文件第 0 節命名對照表。
 
 **M3 — 小型人工驗證（Pilot Validation）**
-狀態：⬜ Not Started
+狀態：🟡 進行中（目前 milestone，詳見 `CURRENT_TASK.md`）
 
 - Objective：在大量回補歷史資料前，先用少量樣本人工證實 M2 的 schema 與 M1 的資料來源假設真的可行。
 - Tasks（依 `data_sources.md` §4 的六項驗證清單）：
